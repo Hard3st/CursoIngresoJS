@@ -10,5 +10,71 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 {
- 	
+     var cantidad;
+     var gasto;
+     var marca;
+     var descuento;
+     var impfinal;
+     cantidad = parseInt(document.getElementById("Cantidad").value);
+     marca = document.getElementById("Marca").value;
+        
+     switch(cantidad){
+         case 5: 
+            if(marca == "ArgentinaLuz"){
+            gasto = cantidad * 35;
+            descuento = gasto * 0.40;
+            gasto = gasto - descuento;
+         }
+            else{
+            gasto = cantidad * 35;
+            descuento = gasto * 0.30;
+            gasto = gasto - descuento;
+         }
+         break;
+         case 4:
+                if(marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
+                    gasto = cantidad * 35;
+                    descuento = gasto * 0.25;
+                    gasto = gasto - descuento;
+                }
+                else{
+                   gasto = cantidad * 35;
+                   descuento = gasto * 0.20;
+                   gasto = gasto - descuento;
+                }
+        break;
+         case 3:
+                if(marca == "ArgentinaLuz"){
+                    gasto = cantidad * 35;
+                    descuento = gasto * 0.15;
+                    gasto = gasto - descuento; 
+                }
+                else if(marca == "FelipeLamparas"){
+                    gasto = cantidad * 35;
+                    descuento = gasto * 0.10;
+                    gasto = gasto - descuento; 
+                }
+                else{
+                    gasto = cantidad * 35;
+                    descuento = gasto * 0.05;
+                    gasto = gasto - descuento;
+                }
+        break;
+        default:
+            gasto = cantidad * 35;
+            descuento = gasto * 0.5;
+            gasto = gasto - descuento;
+        break;
+}
+
+    if(gasto >= 120){
+        impfinal = gasto * 0.10;
+        gasto = gasto + impfinal;
+        document.getElementById("precioDescuento").value = "Usted pago "+gasto+" de IIBB, con un impuesto de : "+impfinal;
+    }
+    else{
+        document.getElementById("precioDescuento").value = gasto;
+    }
+
+
 }
