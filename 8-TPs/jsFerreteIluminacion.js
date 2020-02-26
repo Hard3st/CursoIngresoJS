@@ -11,70 +11,71 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
 function CalcularPrecio () 
 {
      var cantidad;
-     var gasto;
+     var IIBB;
      var marca;
      var descuento;
      var impfinal;
+     var precioDes;
+     var precioDesIIBB;
+     var precio = 35;
      cantidad = parseInt(document.getElementById("Cantidad").value);
      marca = document.getElementById("Marca").value;
         
+     if (cantidad > 0){
+    
      switch(cantidad){
+         case 1:
+         case 2:
+             descuento = 0;
+         break;
          case 5: 
             if(marca == "ArgentinaLuz"){
-            gasto = cantidad * 35;
-            descuento = gasto * 0.40;
-            gasto = gasto - descuento;
-         }
+             descuento = 40;
+             }
             else{
-            gasto = cantidad * 35;
-            descuento = gasto * 0.30;
-            gasto = gasto - descuento;
-         }
+             descuento = 30;
+            }
          break;
          case 4:
-                if(marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
-                    gasto = cantidad * 35;
-                    descuento = gasto * 0.25;
-                    gasto = gasto - descuento;
-                }
-                else{
-                   gasto = cantidad * 35;
-                   descuento = gasto * 0.20;
-                   gasto = gasto - descuento;
-                }
+            if(marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
+             descuento = 25;
+            }
+            else{
+             descuento = 20;
+            }
         break;
          case 3:
-                if(marca == "ArgentinaLuz"){
-                    gasto = cantidad * 35;
-                    descuento = gasto * 0.15;
-                    gasto = gasto - descuento; 
-                }
-                else if(marca == "FelipeLamparas"){
-                    gasto = cantidad * 35;
-                    descuento = gasto * 0.10;
-                    gasto = gasto - descuento; 
-                }
-                else{
-                    gasto = cantidad * 35;
-                    descuento = gasto * 0.05;
-                    gasto = gasto - descuento;
-                }
+            if(marca == "ArgentinaLuz"){
+             descuento = 15;
+            }
+            else if(marca == "FelipeLamparas"){
+             descuento = 10;
+            }
+            else{
+             descuento = 5;
+            }
         break;
         default:
-            gasto = cantidad * 35;
-            descuento = gasto * 0.5;
-            gasto = gasto - descuento;
+             descuento = 50;
         break;
 }
-
-    if(gasto >= 120){
-        impfinal = gasto * 0.10;
-        gasto = gasto + impfinal;
-        document.getElementById("precioDescuento").value = "Usted pago "+gasto+" de IIBB, con un impuesto de : "+impfinal;
+    descuento = precio * (descuento / 100);
+    precioDes = precio - descuento;
+    impfinal = precioDes * cantidad;
+    document.getElementById("precioDescuento").value = precioDes;
+    if(impfinal >= 120){
+        IIBB = impfinal * 0.10;
+        precioDesIIBB = impfinal + IIBB;
+        alert("Usted pago "+ precioDesIIBB + " con un "+ IIBB + " de ingresos brutos");
+        
     }
     else{
-        document.getElementById("precioDescuento").value = gasto;
+        alert("Usted pago "+ impfinal);
     }
 
 
+}
+else{
+    alert("El numero ingresado es invalido. Reingrese un numero");
+}
 }
